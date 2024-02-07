@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "es2015",
+        // "sourceMap": true,
+        // "outDir": "./dist",
+        // "rootDir": "./src",
+        "esModuleInterop": true,
+        "noImplicitAny": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}

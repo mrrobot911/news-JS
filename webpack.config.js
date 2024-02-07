@@ -1,21 +1,21 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+import path from 'path';
+import { merge } from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: path.resolve(__dirname, './src/index.ts'),
     mode: 'development',
     module: {
         rules: [
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: ['style-loader', 'css-loader', 'ts-loader'],
             },
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts'],
     },
     output: {
         filename: 'index.js',
