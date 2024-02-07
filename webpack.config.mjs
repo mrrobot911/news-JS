@@ -2,7 +2,9 @@ import path from 'path';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import { fileURLToPath } from 'node:url';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
     mode: 'development',
@@ -30,9 +32,10 @@ const baseConfig = {
     ],
 };
 
-module.exports = ({ mode }) => {
+const mergeConfigs = ({ mode }) => {
     const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+    const envConfig = isProductionMode ? import('./webpack.prod.config.mjs') : import('./webpack.dev.config.mjs');
 
     return merge(baseConfig, envConfig);
 };
+export default mergeConfigs;
