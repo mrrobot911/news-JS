@@ -1,4 +1,4 @@
 const prod = {
-    mode: 'production',
+  mode: 'production',
 };
 export default prod;
