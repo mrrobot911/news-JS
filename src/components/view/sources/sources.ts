@@ -1,3 +1,4 @@
+import isFragment from '../../../helpers/isFrugment';
 import { Source } from '../../models/index.model';
 import './sources.css';
 
@@ -8,14 +9,15 @@ class Sources {
 
     data.forEach((item) => {
       if (sourceItemTemp) {
-        const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
+        const sourceClone = sourceItemTemp.content.cloneNode(true);
+        if (isFragment(sourceClone)) {
+          const sourceName = sourceClone.querySelector('.source__item-name');
+          if (sourceName) sourceName.textContent = item.name;
+          const sourceItem = sourceClone.querySelector('.source__item');
+          if (sourceItem) sourceItem.setAttribute('data-source-id', item.id);
 
-        const sourceName = sourceClone.querySelector('.source__item-name');
-        if (sourceName) sourceName.textContent = item.name;
-        const sourceItem = sourceClone.querySelector('.source__item');
-        if (sourceItem) sourceItem.setAttribute('data-source-id', item.id);
-
-        fragment.append(sourceClone);
+          fragment.append(sourceClone);
+        }
       }
     });
 

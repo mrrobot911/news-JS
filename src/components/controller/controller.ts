@@ -11,7 +11,7 @@ class AppController extends AppLoader {
     );
   }
 
-  getNews(e: MouseEvent, callback: (data: ResponceModelAll['articles']) => void) {
+  getNews(e: MouseEvent, callback: (data: ResponceModelAll) => void) {
     let target: HTMLDivElement | null = e.target instanceof HTMLDivElement ? e.target : null;
     const newsContainer: HTMLElement | null = e.currentTarget instanceof HTMLElement ? e.currentTarget : null;
 
@@ -20,6 +20,7 @@ class AppController extends AppLoader {
         const sourceId = target.getAttribute('data-source-id');
         if (newsContainer !== null && newsContainer.getAttribute('data-source') !== sourceId) {
           newsContainer.setAttribute('data-source', sourceId || '');
+
           super.getResp(
             {
               endpoint: 'everything',
