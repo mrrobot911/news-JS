@@ -2,16 +2,16 @@ import { ResponceModelAll, ResponceModelSources } from '../models/index.model';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-  getSources(callback: (data: ResponceModelSources) => void) {
+  getSources(callback: (data: ResponceModelSources | ResponceModelAll) => void) {
     super.getResp(
       {
         endpoint: 'sources',
       },
-      callback as () => void
+      callback
     );
   }
 
-  getNews(e: MouseEvent, callback: (data: ResponceModelAll) => void) {
+  getNews(e: MouseEvent, callback: (data: ResponceModelSources | ResponceModelAll) => void) {
     let target: HTMLDivElement | null = e.target instanceof HTMLDivElement ? e.target : null;
     const newsContainer: HTMLElement | null = e.currentTarget instanceof HTMLElement ? e.currentTarget : null;
 
@@ -28,7 +28,7 @@ class AppController extends AppLoader {
                 sources: sourceId || '',
               },
             },
-            callback as () => void
+            callback
           );
         }
         return;

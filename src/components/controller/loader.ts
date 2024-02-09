@@ -1,3 +1,5 @@
+import { ResponceModelAll, ResponceModelSources } from '../models/index.model';
+
 class Loader {
   private baseLink: string;
   private options: { apiKey: string };
@@ -8,7 +10,7 @@ class Loader {
 
   getResp(
     { endpoint, options = {} }: { endpoint: string; options?: Record<string, string> },
-    callback = () => {
+    callback: (data: ResponceModelSources | ResponceModelAll) => void = () => {
       console.error('No callback for GET response');
     }
   ) {
@@ -36,7 +38,12 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  load(method: string, endpoint: string, callback: (data: string) => void, options = {}) {
+  load(
+    method: string,
+    endpoint: string,
+    callback: (data: ResponceModelSources | ResponceModelAll) => void,
+    options = {}
+  ) {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
