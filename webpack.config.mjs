@@ -3,6 +3,7 @@ import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { fileURLToPath } from 'node:url';
+import DotenvWebpackPlugin from 'dotenv-webpack';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const baseConfig = {
@@ -29,6 +30,7 @@ const baseConfig = {
     path: path.resolve(__dirname, './dist'),
   },
   plugins: [
+    new DotenvWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
       filename: 'index.html',
