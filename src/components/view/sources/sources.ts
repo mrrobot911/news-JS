@@ -1,4 +1,3 @@
-import isFragment from '../../../helpers/isFrugment';
 import { Source } from '../../models/index.model';
 import './sources.css';
 
@@ -10,7 +9,7 @@ class Sources {
     data.forEach((item) => {
       if (sourceItemTemp) {
         const sourceClone = sourceItemTemp.content.cloneNode(true);
-        if (isFragment(sourceClone)) {
+        if (sourceClone instanceof DocumentFragment) {
           const sourceName = sourceClone.querySelector('.source__item-name');
           if (sourceName) sourceName.textContent = item.name;
           const sourceItem = sourceClone.querySelector('.source__item');

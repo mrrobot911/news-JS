@@ -1,4 +1,3 @@
-import isFragment from '../../../helpers/isFrugment';
 import { Article } from '../../models/index.model';
 import './news.css';
 
@@ -12,7 +11,7 @@ class News {
     news.forEach((item, idx) => {
       if (newsItemTemp) {
         const newsClone = newsItemTemp.content.cloneNode(true);
-        if (isFragment(newsClone)) {
+        if (newsClone instanceof DocumentFragment) {
           if (idx % 2) {
             const newsItem = newsClone.querySelector('.news__item');
             if (newsItem) {
