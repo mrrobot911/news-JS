@@ -9,7 +9,7 @@ export class AppView {
 
   drawNews(data: ResponceModelSources | ResponceModelAll) {
     if ('articles' in data) {
-      const values = data?.articles ? data?.articles : [];
+      const values = data?.articles ?? [];
       this.news.draw(values);
     }
   }
