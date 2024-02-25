@@ -1,16 +1,16 @@
 {
-    "compilerOptions": {
-        "target": "ES2015",
-        "module": "es2015",
-        "rootDir": "./src",
-        "outDir": "./dist",
-        "esModuleInterop": true,
-        // Strict Checks
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "strictFunctionTypes": true
-    },
-    "include": ["src/**/*.ts", "src/**/*.model.ts"],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "module": "es2015",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    // Strict Checks
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strictFunctionTypes": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

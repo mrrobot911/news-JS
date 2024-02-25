@@ -8,13 +8,12 @@ class App {
 
   start(): void {
     const sourcesElement: HTMLElement | null = document.querySelector('.sources');
-    if (sourcesElement) {
-      sourcesElement.addEventListener('click', (e: MouseEvent) => {
-        this.controller.getNews(e, (data) => this.view.drawNews(data));
-      });
-    } else {
-      console.error("Element with class 'sources' not found.");
+    if (sourcesElement === null) {
+      return console.error("Element with class 'sources' not found.");
     }
+    sourcesElement.addEventListener('click', (e: Event) => {
+      this.controller.getNews(e, (data) => this.view.drawNews(data));
+    });
     this.controller.getSources((data) => this.view.drawSources(data));
   }
 }

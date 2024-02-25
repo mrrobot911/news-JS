@@ -3,12 +3,9 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
-  private news: News;
-  private sources: Sources;
-  constructor() {
-    this.news = new News();
-    this.sources = new Sources();
-  }
+  private news = new News();
+  private sources = new Sources();
+  constructor() {}
 
   drawNews(data: ResponceModelSources | ResponceModelAll) {
     if ('articles' in data) {
@@ -19,7 +16,7 @@ export class AppView {
 
   drawSources(data: ResponceModelSources | ResponceModelAll) {
     if ('sources' in data) {
-      const values = data?.sources ? data?.sources : [];
+      const values = data?.sources ?? [];
       this.sources.draw(values);
     }
   }

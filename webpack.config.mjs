@@ -9,6 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index.ts'),
   mode: 'development',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {

@@ -1,9 +1,7 @@
 import { ResponceModelAll, ResponceModelSources } from '../models/index.model';
 
 class Loader {
-  private baseLink: string;
-  private options: { apiKey: string };
-  constructor(baseLink: string, options: { apiKey: string }) {
+  constructor(private baseLink: string, private options: { apiKey: string }) {
     this.baseLink = baseLink;
     this.options = options;
   }
