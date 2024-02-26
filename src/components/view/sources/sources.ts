@@ -7,14 +7,15 @@ class Sources {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     const fragment = document.createDocumentFragment();
     const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
+    const filters = document.querySelector('.filters');
 
     const drawData = () => {
+      if (!sourceItemTemp) {
+        return;
+      }
       data
         .filter((el) => el.name.startsWith(this.filter))
         .forEach((item) => {
-          if (!sourceItemTemp) {
-            return;
-          }
           const sourceClone = sourceItemTemp.content.cloneNode(true);
           if (sourceClone instanceof DocumentFragment) {
             const sourceName = sourceClone.querySelector('.source__item-name');
@@ -30,20 +31,31 @@ class Sources {
       if (sources) sources.replaceChildren(fragment);
     };
 
-    const filterContainer = document.createElement('div');
+    if (filters?.childElementCount !== 0) {
+      return;
+    }
     letters.forEach((letter) => {
       const btn = document.createElement('button');
       btn.textContent = letter;
+      btn.className = 'source__item';
+      if (letter === this.filter) {
+        btn.className = 'source__item checked';
+      }
       btn.addEventListener('click', () => {
         this.filter = letter;
+        document.querySelectorAll('button').forEach((el) => {
+          if (el.textContent === this.filter) {
+            el.className = 'source__item checked';
+          } else {
+            el.className = 'source__item';
+          }
+        });
         drawData();
       });
-      filterContainer.append(btn);
+      filters?.append(btn);
     });
 
     drawData();
-    const filters = document.querySelector('.filters');
-    if (filters?.childElementCount === 0) filters?.append(filterContainer);
   }
 }
 
